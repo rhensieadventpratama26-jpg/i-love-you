@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For You ❤️</title>
+    <title>Permanent Love ❤️</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700&display=swap" rel="stylesheet">
 
     <style>
         body {
-            background-color: #0b0c10;
+            background-color: #0d0d13;
             margin: 0;
             padding: 0;
             display: flex;
@@ -19,52 +19,50 @@
             align-items: center;
             min-height: 100vh;
             font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow: hidden;
         }
 
-        /* Ukuran box kita perbesar agar tidak menciut di HP */
+        /* Wadah Utama */
         .heart-container {
-            width: 100%;
-            max-width: 360px;
-            padding: 10px;
-            text-align: center;
+            position: relative;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: scale(0.9);
         }
 
-        .line {
-            display: block;
-            margin: 4px 0;
+        /* Pengaturan Teks Mengalir */
+        .heart-text {
+            position: absolute;
+            font-size: 10px;
+            font-weight: 700;
             white-space: nowrap;
+            color: #ffb3c1;
+            text-shadow: 0 0 10px rgba(255, 75, 110, 0.8), 0 0 20px rgba(255, 75, 110, 0.4);
+            transform-origin: center;
+            animation: glowPulse 2.5s ease-in-out infinite alternate;
         }
 
-        /* Ukuran teks diganti ke rem agar stabil di browser apa pun */
-        .line span {
-            display: inline-block;
-            font-size: 0.7rem; 
-            font-weight: 800;
-            text-transform: uppercase;
-            margin: 0 2px;
-            background: linear-gradient(45deg, #ff416c, #ff4b2b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: pulseFade 3s ease-in-out infinite;
-        }
+        /* Variasi delay animasi biar muncul-hilangnya mengalir halus */
+        .heart-text:nth-child(2n) { animation-delay: 0.3s; }
+        .heart-text:nth-child(3n) { animation-delay: 0.6s; }
+        .heart-text:nth-child(4n) { animation-delay: 0.9s; }
+        .heart-text:nth-child(5n) { animation-delay: 1.2s; }
 
-        /* Pengaturan jeda kedap-kedip bergantian */
-        .line span:nth-child(odd) {
-            animation-delay: 0s;
-        }
-        .line span:nth-child(even) {
-            animation-delay: 1.5s;
-        }
-
-        /* Kita ubah animasinya: dari redup (0.3) ke terang benderang (1) */
-        @keyframes pulseFade {
-            0%, 100% {
-                opacity: 0.3;
-                transform: scale(0.98);
+        /* Efek Kerlap-kerlip Cahaya Pink Glowing */
+        @keyframes glowPulse {
+            0% {
+                opacity: 0.2;
+                filter: drop-shadow(0 0 2px rgba(255, 75, 110, 0.5));
+                transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(0.95);
             }
-            50% {
+            100% {
                 opacity: 1;
-                transform: scale(1.02);
+                filter: drop-shadow(0 0 15px rgba(255, 75, 110, 1));
+                transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(1.05);
+                color: #ffffff;
             }
         }
     </style>
@@ -72,29 +70,31 @@
 <body>
 
     <div class="heart-container">
-        <div class="line">
-            <span>i love you</span><span>i love you</span>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <span>i love you</span><span>i love you</span>
-        </div>
-        <div class="line">
-            <span>i love you</span><span>i love you</span><span>i love you</span><span>i love you</span><span>i love you</span>
-        </div>
-        <div class="line">
-            <span>i love you</span><span>i love you</span><span>i love you</span><span>i love you</span><span>i love you</span>
-        </div>
-        <div class="line">
-            <span>i love you</span><span>i love you</span><span>i love you</span><span>i love you</span>
-        </div>
-        <div class="line">
-            <span>i love you</span><span>i love you</span><span>i love you</span>
-        </div>
-        <div class="line">
-            <span>i love you</span><span>i love you</span>
-        </div>
-        <div class="line">
-            <span>i love you</span>
-        </div>
+        <div class="heart-text" style="--x: -45px; --y: -75px; --r: -35deg;">i love you</div>
+        <div class="heart-text" style="--x: -85px; --y: -60px; --r: -15deg;">i love you</div>
+        <div class="heart-text" style="--x: -110px; --y: -30px; --r: 20deg;">i love you</div>
+        <div class="heart-text" style="--x: -115px; --y: 10px; --r: 55deg;">i love you</div>
+        
+        <div class="heart-text" style="--x: -100px; --y: 50px; --r: 75deg;">i love you</div>
+        <div class="heart-text" style="--x: -75px; --y: 85px; --r: 65deg;">i love you</div>
+        <div class="heart-text" style="--x: -45px; --y: 115px; --r: 55deg;">i love you</div>
+        <div class="heart-text" style="--x: -15px; --y: 140px; --r: 45deg;">i love you</div>
+
+        <div class="heart-text" style="--x: 0px; --y: 155px; --r: 0deg;">i love you</div>
+
+        <div class="heart-text" style="--x: 15px; --y: 140px; --r: -45deg;">i love you</div>
+        <div class="heart-text" style="--x: 45px; --y: 115px; --r: -55deg;">i love you</div>
+        <div class="heart-text" style="--x: 75px; --y: 85px; --r: -65deg;">i love you</div>
+        <div class="heart-text" style="--x: 100px; --y: 50px; --r: -75deg;">i love you</div>
+
+        <div class="heart-text" style="--x: 115px; --y: 10px; --r: -55deg;">i love you</div>
+        <div class="heart-text" style="--x: 110px; --y: -30px; --r: -20deg;">i love you</div>
+        <div class="heart-text" style="--x: 85px; --y: -60px; --r: 15deg;">i love you</div>
+        <div class="heart-text" style="--x: 45px; --y: -75px; --r: 35deg;">i love you</div>
+
+        <div class="heart-text" style="--x: 15px; --y: -55px; --r: 65deg;">i love you</div>
+        <div class="heart-text" style="--x: 0px; --y: -40px; --r: 0deg;">❤️</div>
+        <div class="heart-text" style="--x: -15px; --y: -55px; --r: -65deg;">i love you</div>
     </div>
 
 </body>
