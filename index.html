@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfect Floating Heart ❤️</title>
+    <title>Horizontal Heart Teks ❤️</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,7 +22,6 @@
             overflow: hidden;
         }
 
-        /* Wadah utama penampung hati */
         .heart-container {
             position: relative;
             width: 320px;
@@ -32,29 +31,29 @@
             align-items: center;
         }
 
-        /* Gaya teks i love you */
         .heart-text {
             position: absolute;
-            font-size: 10px;
+            font-size: 8px; /* Ukuran sedikit diperkecil karena teksnya ditumpuk agar tidak berantakan */
             font-weight: 800;
             text-transform: uppercase;
             white-space: nowrap;
             color: #ffb3c1;
-            /* Efek neon glow pink aesthetics */
             text-shadow: 0 0 8px rgba(255, 75, 110, 0.8), 0 0 15px rgba(255, 75, 110, 0.4);
+            text-align: center;
+            line-height: 1.2;
             animation: waveGlow 3s ease-in-out infinite;
         }
 
-        /* Animasi mengalir memutar (muncul-hilang bergantian) */
+        /* Animasi mengalir memutar dengan posisi teks dikunci tetap lurus (tanpa rotate) */
         @keyframes waveGlow {
             0%, 100% {
                 opacity: 0.15;
-                transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(0.9);
-                filter: blur(1px);
+                transform: translate(var(--x), var(--y)) scale(0.9);
+                filter: blur(0.5px);
             }
             50% {
                 opacity: 1;
-                transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(1.1);
+                transform: translate(var(--x), var(--y)) scale(1.05);
                 color: #ffffff;
                 filter: blur(0px);
                 text-shadow: 0 0 15px rgba(255, 75, 110, 1), 0 0 25px rgba(255, 75, 110, 0.6);
@@ -68,40 +67,32 @@
 
     <script>
         const heartContainer = document.getElementById('heart');
-        const totalTexts = 22; // Jumlah total tulisan agar melingkar penuh tanpa bolong
+        const totalTexts = 20; // Jumlah titik koordinat hati
         
         for (let i = 0; i < totalTexts; i++) {
-            // Rumus matematika lingkaran luar bentuk hati (Math.PI)
             const angle = (i / totalTexts) * Math.PI * 2;
             
-            // Formula kurva hati standar internasional (Simetris & Sempurna)
+            // Rumus matematika kurva hati
             const x = 16 * Math.pow(Math.sin(angle), 3);
             const y = -(13 * Math.cos(angle) - 5 * Math.cos(2 * angle) - 2 * Math.cos(3 * angle) - Math.cos(4 * angle));
             
-            // Pengali skala agar pas di layar HP (jarak renggang teks)
-            const scaleX = 8.5;
-            const scaleY = 8.5;
-            
-            // Menghitung sudut kemiringan tulisan agar menghadap sesuai lekukan garis
-            const nextAngle = ((i + 1) / totalTexts) * Math.PI * 2;
-            const nextX = 16 * Math.pow(Math.sin(nextAngle), 3);
-            const nextY = -(13 * Math.cos(nextAngle) - 5 * Math.cos(2 * nextAngle) - 2 * Math.cos(3 * nextAngle) - Math.cos(4 * nextAngle));
-            const rotateAngle = Math.atan2(nextY - y, nextX - x) * (180 / Math.PI);
+            // Skala jarak agar pas di HP
+            const scaleX = 9;
+            const scaleY = 9;
 
-            // Membuat elemen teks baru secara otomatis
             const span = document.createElement('div');
             span.className = 'heart-text';
-            span.innerText = 'i love you';
             
-            // Pasang posisi koordinat hasil rumus ke dalam CSS
+            // DI SINI TRIKNYA: Teks dibuat bertumpuk 2 baris ke bawah (<br> artinya enter/baris baru)
+            span.innerHTML = 'i love you<br>i love you';
+            
+            // Atur posisi koordinat
             span.style.setProperty('--x', `${x * scaleX}px`);
             span.style.setProperty('--y', `${y * scaleY}px`);
-            span.style.setProperty('--r', `${rotateAngle}deg`);
             
-            // Trik utama: memberi delay bertahap berdasarkan urutan agar animasinya mengalir memutar
+            // Efek delay mengalir memutar berurutan
             span.style.animationDelay = `${(i / totalTexts) * 3}s`;
             
-            // Masukkan teks ke dalam wadah hati
             heartContainer.appendChild(span);
         }
     </script>
