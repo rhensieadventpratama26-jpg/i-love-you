@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfect Love ❤️</title>
+    <title>Perfect Floating Heart ❤️</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@800&display=swap" rel="stylesheet">
 
     <style>
         body {
-            background-color: #0c0c11;
+            background-color: #08080c;
             margin: 0;
             padding: 0;
             display: flex;
@@ -22,78 +22,89 @@
             overflow: hidden;
         }
 
-        /* Wadah Utama (kita perbesar sedikit tingginya) */
+        /* Wadah utama penampung hati */
         .heart-container {
             position: relative;
-            width: 300px;
-            height: 350px; 
+            width: 320px;
+            height: 320px;
             display: flex;
             justify-content: center;
             align-items: center;
-            transform: scale(0.9);
         }
 
-        /* Pengaturan Teks Mengalir */
+        /* Gaya teks i love you */
         .heart-text {
             position: absolute;
             font-size: 10px;
-            font-weight: 700;
+            font-weight: 800;
+            text-transform: uppercase;
             white-space: nowrap;
             color: #ffb3c1;
-            /* Efek cahaya neon pink estetik */
-            text-shadow: 0 0 10px rgba(255, 75, 110, 0.9), 0 0 20px rgba(255, 75, 110, 0.5);
-            transform-origin: center;
-            animation: glowPulse 2.5s ease-in-out infinite alternate;
+            /* Efek neon glow pink aesthetics */
+            text-shadow: 0 0 8px rgba(255, 75, 110, 0.8), 0 0 15px rgba(255, 75, 110, 0.4);
+            animation: waveGlow 3s ease-in-out infinite;
         }
 
-        /* Variasi delay animasi biar muncul-hilangnya sinematik */
-        .heart-text:nth-child(3n) { animation-delay: 0.3s; }
-        .heart-text:nth-child(3n+1) { animation-delay: 0.6s; }
-        .heart-text:nth-child(3n+2) { animation-delay: 0.9s; }
-
-        /* Efek Kedap-kedip Neon Pink */
-        @keyframes glowPulse {
-            0% {
-                opacity: 0.3;
-                filter: drop-shadow(0 0 2px rgba(255, 75, 110, 0.6));
-                transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(0.98);
+        /* Animasi mengalir memutar (muncul-hilang bergantian) */
+        @keyframes waveGlow {
+            0%, 100% {
+                opacity: 0.15;
+                transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(0.9);
+                filter: blur(1px);
             }
-            100% {
+            50% {
                 opacity: 1;
-                filter: drop-shadow(0 0 15px rgba(255, 75, 110, 1));
-                transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(1.03);
+                transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(1.1);
                 color: #ffffff;
+                filter: blur(0px);
+                text-shadow: 0 0 15px rgba(255, 75, 110, 1), 0 0 25px rgba(255, 75, 110, 0.6);
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="heart-container">
-        <div class="heart-text" style="--x: -45px; --y: -95px; --r: -35deg;">i love you</div>
-        <div class="heart-text" style="--x: -85px; --y: -75px; --r: -15deg;">i love you</div>
-        <div class="heart-text" style="--x: -110px; --y: -40px; --r: 25deg;">i love you</div>
-        <div class="heart-text" style="--x: -110px; --y: 10px; --r: 65deg;">i love you</div>
+    <div class="heart-container" id="heart"></div>
+
+    <script>
+        const heartContainer = document.getElementById('heart');
+        const totalTexts = 22; // Jumlah total tulisan agar melingkar penuh tanpa bolong
         
-        <div class="heart-text" style="--x: -95px; --y: 60px; --r: 80deg;">i love you</div>
-        <div class="heart-text" style="--x: -70px; --y: 110px; --r: 70deg;">i love you</div>
-        <div class="heart-text" style="--x: -40px; --y: 150px; --r: 60deg;">i love you</div>
+        for (let i = 0; i < totalTexts; i++) {
+            // Rumus matematika lingkaran luar bentuk hati (Math.PI)
+            const angle = (i / totalTexts) * Math.PI * 2;
+            
+            // Formula kurva hati standar internasional (Simetris & Sempurna)
+            const x = 16 * Math.pow(Math.sin(angle), 3);
+            const y = -(13 * Math.cos(angle) - 5 * Math.cos(2 * angle) - 2 * Math.cos(3 * angle) - Math.cos(4 * angle));
+            
+            // Pengali skala agar pas di layar HP (jarak renggang teks)
+            const scaleX = 8.5;
+            const scaleY = 8.5;
+            
+            // Menghitung sudut kemiringan tulisan agar menghadap sesuai lekukan garis
+            const nextAngle = ((i + 1) / totalTexts) * Math.PI * 2;
+            const nextX = 16 * Math.pow(Math.sin(nextAngle), 3);
+            const nextY = -(13 * Math.cos(nextAngle) - 5 * Math.cos(2 * nextAngle) - 2 * Math.cos(3 * nextAngle) - Math.cos(4 * nextAngle));
+            const rotateAngle = Math.atan2(nextY - y, nextX - x) * (180 / Math.PI);
 
-        <div class="heart-text" style="--x: 0px; --y: 175px; --r: 0deg;">❤️</div>
-
-        <div class="heart-text" style="--x: 40px; --y: 150px; --r: -60deg;">i love you</div>
-        <div class="heart-text" style="--x: 70px; --y: 110px; --r: -70deg;">i love you</div>
-        <div class="heart-text" style="--x: 95px; --y: 60px; --r: -80deg;">i love you</div>
-
-        <div class="heart-text" style="--x: 110px; --y: 10px; --r: -65deg;">i love you</div>
-        <div class="heart-text" style="--x: 110px; --y: -40px; --r: -25deg;">i love you</div>
-        <div class="heart-text" style="--x: 85px; --y: -75px; --r: 15deg;">i love you</div>
-        <div class="heart-text" style="--x: 45px; --y: -95px; --r: 35deg;">i love you</div>
-
-        <div class="heart-text" style="--x: 15px; --y: -70px; --r: 65deg;">i love you</div>
-        <div class="heart-text" style="--x: 0px; --y: -50px; --r: 0deg;">i love you</div>
-        <div class="heart-text" style="--x: -15px; --y: -70px; --r: -65deg;">i love you</div>
-    </div>
+            // Membuat elemen teks baru secara otomatis
+            const span = document.createElement('div');
+            span.className = 'heart-text';
+            span.innerText = 'i love you';
+            
+            // Pasang posisi koordinat hasil rumus ke dalam CSS
+            span.style.setProperty('--x', `${x * scaleX}px`);
+            span.style.setProperty('--y', `${y * scaleY}px`);
+            span.style.setProperty('--r', `${rotateAngle}deg`);
+            
+            // Trik utama: memberi delay bertahap berdasarkan urutan agar animasinya mengalir memutar
+            span.style.animationDelay = `${(i / totalTexts) * 3}s`;
+            
+            // Masukkan teks ke dalam wadah hati
+            heartContainer.appendChild(span);
+        }
+    </script>
 
 </body>
 </html>
